@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  auth:
+    build:
+      context: .
+      dockerfile: apps/auth/Dockerfile
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - spartan-food-pantry
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      - spartan-food-pantry
+networks:
+  spartan-food-pantry:
